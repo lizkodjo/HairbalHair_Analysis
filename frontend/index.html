@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 Ayurvedic Hair Herb Recommender</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <i class="fas fa-leaf"></i>
+          <h1>Ayurvedic Hair Care</h1>
+        </div>
+        <p class="subtitle">
+          Select Your Hair Conditions for Personalised Herb Recommendations
+        </p>
+        <div class="mode-badge">
+          <!-- <span class="badge condition-mode">💆 No Image Needed</span> -->
+        </div>
+      </header>
+
+      <!-- Condition Selection -->
+      <section class="conditions-section">
+        <div class="card">
+          <h2>
+            <i class="fas fa-clipboard-list"></i>
+             Select Your Hair Conditions
+          </h2>
+          <p class="instruction">
+            Choose the conditions you're experiencing. We'll recommend Ayurvedic
+            herbs that address them.
+          </p>
+
+          <div class="conditions-grid" id="conditionsGrid">
+            <!-- Conditions loaded dynamically -->
+          </div>
+
+          <div class="selected-conditions">
+            <h3>Selected Conditions:</h3>
+            <div id="selectedConditionsList" class="condition-tags">
+              <span class="empty-message">No conditions selected yet</span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button id="getRecommendationsBtn" class="btn-primary" disabled>
+              <i class="fas fa-seedling"></i>
+              <span id="btnText">Get Herb Recommendations</span>
+            </button>
+            <button id="getDetailedBtn" class="btn-secondary" disabled>
+              <i class="fas fa-list-ul"></i>
+              Get Detailed Analysis
+            </button>
+          </div>
+
+          <div
+            id="loadingSpinner"
+            style="display: none"
+            class="loading-spinner"
+          >
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Finding the best herbs for you...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Optional Image Upload -->
+      <section class="image-upload-section">
+        <div class="card">
+          <h2><i class="fas fa-camera"></i> Optional: Upload Hair Image</h2>
+          <p class="instruction">
+            Upload a photo of your hair for more personalised recommendations
+            (optional)
+          </p>
+
+          <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <p>Drag & drop your image here or click to browse</p>
+            <small>Supports: JPG, PNG, WEBP (Max 16MB) - Optional</small>
+            <input type="file" id="imageInput" accept="image/*" hidden />
+          </div>
+
+          <div
+            id="imagePreview"
+            style="display: none; text-align: center; margin: 15px 0"
+          >
+            <img
+              id="previewImg"
+              src=""
+              alt="Preview"
+              style="max-width: 200px; max-height: 200px; border-radius: 10px"
+            />
+            <p style="color: #2d5016; margin-top: 5px">
+              <i class="fas fa-check-circle"></i> Image ready for analysis
+            </p>
+          </div>
+
+          <div class="button-group">
+            <!-- <button id="getRecommendationsBtn" class="btn-primary" disabled>
+              <i class="fas fa-seedling"></i>
+              <span id="btnText">Get Herb Recommendations</span>
+            </button> -->
+            <button id="getDetailedBtn" class="btn-secondary" disabled>
+              <i class="fas fa-list-ul"></i>
+              Detailed Analysis
+            </button>
+          </div>
+
+          <div
+            id="loadingSpinner"
+            style="display: none"
+            class="loading-spinner"
+          >
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Finding the best herbs for you...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section class="results-section" id="resultsSection">
+        <!-- Summary -->
+        <div class="card summary-card">
+          <h2><i class="fas fa-star"></i> Your Personalised Summary</h2>
+          <div id="summaryContent" class="summary-content">
+            Loading your recommendations...
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="card recommendations-card">
+          <h2><i class="fas fa-seedling"></i> Recommended Herbs for You</h2>
+          <div id="recommendationsList"></div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="card quick-reference">
+          <h2><i class="fas fa-bolt"></i> Quick Reference</h2>
+          <div id="quickReference">
+            <p>Your recommended herbs will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Knowledge Base -->
+      <section class="knowledge-section">
+        <div class="card">
+          <h2><i class="fas fa-book"></i> Ayurvedic Herb Knowledge Base</h2>
+          <p style="color: #718096; margin-bottom: 15px">
+            Browse our curated collection of
+            <strong id="herbCount">65+</strong> Ayurvedic herbs specifically for
+            hair growth and health.
+          </p>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="herbSearch"
+              placeholder="Search herbs by name, benefit, or condition..."
+            />
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="table-wrapper">
+            <table id="herbTable">
+              <thead>
+                <tr>
+                  <th>Herb Name</th>
+                  <th>Botanical Name</th>
+                  <th>Sanskrit Name</th>
+                  <th>Benefits</th>
+                  <th>How to Use</th>
+                  <th>Hair Types</th>
+                  <th>Conditions</th>
+                </tr>
+              </thead>
+              <tbody id="herbTableBody">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <p style="color: #718096; margin-top: 15px; font-size: 14px">
+            <i class="fas fa-info-circle"></i> Showing hair-specific herbs only.
+            All herbs in this database support hair growth and health.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="tech-stack">          
+           <p>&copy; 2026 LizKodjo</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
