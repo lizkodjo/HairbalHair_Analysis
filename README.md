@@ -239,34 +239,52 @@ python app.py
 ## 📁 Project Structure
 
 ```text
-HaurvakGaur_Analysis/
+HairbalHair_Analysis/
 ├── backend/
+│   ├── config.py 
 │   ├── app.py                      # Main Flask application
 │   ├── requirements.txt            # Python dependencies
 │   ├── .env                        # Environment variables
-│   ├── data/
-│   │   ├── hair_herbs_comprehensive.csv  # 60+ hair herbs
-│   │   ├── data_pipeline.py         # ETL pipeline
-│   │   └── herb_data_loader.py      # Data loading and querying
-│   ├── model/
-│   │   └── hair_classifier.py      # Optional image classifier
 │   ├── api/
 │   │   ├── gemini_simple.py        # Google Gemini integration
 │   │   └── huggingface_integration.py  # Hugging Face fallback
-│   └── tests/
-│       ├── test_gemini.py          # Gemini API tests
-│       └── test_classifier.py      # Classifier tests
+│   ├── routes/
+│   |    └── api_routes.py           # API routes
+│   ├── data/
+│   │   └── hair_herbs_comprehensive.csv  # 60+ hair herbs
+│   ├── database/
+|   |   └── herb_repository.py      # Herbs file
+│   ├── model/
+│   │   └── hair_classifier.py      # Optional image classifier
+|   ├── services/
+|   |   ├── ai_service.py           # AI Services
+|   |   ├── classifier_service.py   # Hair classifier
+|   |   └── recommendation_service.py   # Recommendations
+|
 ├── frontend/
 │   ├── index.html                  # Main HTML page
 │   ├── style.css                   # Custom styles
-│   └── script.js        # Frontend logic
+│   └── script.js                   # Frontend logic
 └── README.md                       # This file
 
 ```
 
 ## 📷 Screenshots
+### Dashboard
 
-Dashboard
+![Dashboard](backend/images/dashboard.png)
+
+### With Image
+![Image](backend/images/analysed_image.png)
+
+### Options
+![Options](backend/images/herbs_only.png)
+
+### AI generated response
+![recommendations](backend/images/herbs_without_image.png)
+
+### Recommended herbs
+![Herbs](backend/images/recommended_herbs.png)
 
 
 ## 🎓 Learning Outcomes
