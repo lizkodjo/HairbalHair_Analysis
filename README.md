@@ -260,7 +260,6 @@ HairbalHair_Analysis/
 |   |   ├── ai_service.py           # AI Services
 |   |   ├── classifier_service.py   # Hair classifier
 |   |   └── recommendation_service.py   # Recommendations
-|
 ├── frontend/
 │   ├── index.html                  # Main HTML page
 │   ├── style.css                   # Custom styles
